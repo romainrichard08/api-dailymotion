@@ -23,7 +23,7 @@ class VideoController extends Controller
 
         return $response;
     }
-    
+
     /**
      * @Route("/video", name="video_create")
      * @Method({"POST"})
@@ -38,5 +38,39 @@ class VideoController extends Controller
         $em->flush();
 
         return new Response('', Response::HTTP_CREATED);
+    }
+
+    /**
+     * @Route("/video", name="video_list")
+     * @Method({"GET"})
+     */
+    public function listAction()
+    {
+        $video = $this->getDoctrine()->getRepository('App\Entity\Video')->findAll();
+        $data = $this->get('jms_serializer')->serialize($video, 'json');
+
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/video/{id}", name="video_show")
+     * @Method({"DELETE"})
+     */
+    public function deleteAction($id)
+    {
+       // $video = $this->getDoctrine()->getRepository('App\Entity\Video')->find($id);
+        $data = $this->get('jms_serializer')->serialize($id, 'json');
+
+       // $response = new Response($data);
+        $data->remove($id);
+        $data->flush();
+
+        return new Response('', Response::HTTP_OK);
+
+
+
     }
 }
