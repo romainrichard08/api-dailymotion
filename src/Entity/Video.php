@@ -65,14 +65,14 @@ class Video
         return $this;
     }
 
-    public function getContent()
+    public function getDescription()
     {
         return $this->description;
     }
 
-    public function setContent($description)
+    public function setDescription($description)
     {
-        $this->$description = $description;
+        $this->description = $description;
 
         return $this;
     }
