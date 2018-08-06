@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class VideoController extends Controller
 {
     /**
-     * @Route("/video/{id}", name="video_show")
+     * @Route("/video/{id}", name="video_show"), methods={"GET","HEAD"})
      */
     public function showAction(Video $video)
     {
@@ -25,8 +25,7 @@ class VideoController extends Controller
     }
 
     /**
-     * @Route("/video", name="video_create")
-     * @Method({"POST"})
+     * @Route("/video", methods={"POST"})
      */
     public function createAction(Request $request)
     {
@@ -41,8 +40,7 @@ class VideoController extends Controller
     }
 
     /**
-     * @Route("/video", name="video_list")
-     * @Method({"GET"})
+     * @Route("/video", methods={"GET"})
      */
     public function listAction()
     {
