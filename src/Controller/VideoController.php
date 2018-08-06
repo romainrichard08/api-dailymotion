@@ -14,12 +14,8 @@ class VideoController extends Controller
     /**
      * @Route("/video/{id}", name="video_show")
      */
-    public function showAction()
+    public function showAction(Video $video)
     {
-        $video = new Video();
-        $video
-            ->setTitle('First video')
-            ->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ');
         $data = $this->get('jms_serializer')->serialize($video, 'json');
 
         $response = new Response($data);
@@ -27,7 +23,7 @@ class VideoController extends Controller
 
         return $response;
     }
-
+    
     /**
      * @Route("/video", name="video_create")
      * @Method({"POST"})
